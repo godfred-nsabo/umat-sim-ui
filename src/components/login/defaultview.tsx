@@ -91,7 +91,7 @@ const DefaultView: React.FC = () => {
         <main className="relative container mx-auto px-4 py-12">
           <div className="text-center text-white mb-8">
             <center>
-              <Image src="/logo.png" alt="Logo" width={200} height={300} />
+              <Image src="/logo-light.png" alt="Logo" width={200} height={300} />
             </center>
           </div>
 

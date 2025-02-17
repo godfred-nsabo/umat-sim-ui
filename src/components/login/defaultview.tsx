@@ -43,15 +43,15 @@ const DefaultView: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
+  // const delay = (ms: number) =>
+  //   new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     try {
       setLoading(true);
       event.preventDefault();
 
-      await delay(2000);
+      //await delay(2000);
 
       const data = await AuthService.Authenticate(username, password);
       if (data.isSuccessful && router) {

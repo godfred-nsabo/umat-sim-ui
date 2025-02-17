@@ -79,6 +79,7 @@ export default function Dashboard() {
   const [fullname, setFullname] = useState<string | undefined>("");
   const [firstname, setFirstname] = useState<string | undefined>("");
   const [loading, setLoading] = useState(true);
+  const [submitloading, setsubmitLoading] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
@@ -175,17 +176,27 @@ export default function Dashboard() {
     }
   };
 
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
   const Register = async () => {
-    const data = await EventService.Register();
-    if (data?.isSuccessful) {
-      toast.success(
-        "Congrats on matriculating! 🎉 Big things ahead—this is just the beginning! Keep crushing it! 👏🔥",
-        {
-          duration: 10000, // 10000ms = 10 seconds
-        }
-      );
-    } else {
-      toast.error(data?.message);
+    try {
+      setsubmitLoading(true);
+      const data = await EventService.Register();
+
+      await delay(2000);
+      if (data?.isSuccessful) {
+        toast.success(
+          "Congrats on matriculating! 🎉 Big things ahead—this is just the beginning! Keep crushing it! 👏🔥",
+          {
+            duration: 10000, // 10000ms = 10 seconds
+          }
+        );
+      } else {
+        toast.error(data?.message);
+      }
+    } finally {
+      setsubmitLoading(false);
     }
   };
 
@@ -223,7 +234,7 @@ export default function Dashboard() {
                     <HelpCircle className="h-8 w-8 mb-2" />
                     <h3 className="font-semibold mb-1">Dear {firstname},</h3>
                     <p className="text-sm mb-3">
-                      Congratulations on you admission to the University of
+                      Congratulations on your admission to the University of
                       Mines and Technology, Tarkwa
                     </p>
                     <Button
@@ -496,13 +507,24 @@ export default function Dashboard() {
                     <button
                       type="submit"
                       className="rounded-md bg-green-50 px-4 py-2 text-sm font-medium text-green-500 hover:bg-green-100"
+                      disabled={submitloading}
                     >
                       <span
                         className="flex items-center gap-2"
                         onClick={Register}
                       >
-                        <PlusCircle className="h-4 w-4 text-emerald-500" />
-                        <span className="text-sm">Submit Attendance</span>
+                        {submitloading ? (
+                          <>
+                            <span>Syncing data</span>{" "}
+                            <div className="border-4 border-t-4 border-gray-300 border-t-[#3498db] rounded-full w-5 h-5 animate-spin mr-2"></div>
+                          </>
+                        ) : null}
+                        {!submitloading && (
+                          <>
+                            <PlusCircle className="h-4 w-4 text-emerald-500" />
+                            <span className="text-sm">Submit Attendance </span>
+                          </>
+                        )}
                       </span>
                     </button>
                   )}

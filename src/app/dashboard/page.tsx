@@ -382,7 +382,7 @@ export default function Dashboard() {
               <Card className="mb-8">
                 <CardHeader>
                   <CardTitle className="text-neutral-700">
-                    23th Matriculation Ceremony
+                    22nd Matriculation Ceremony
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="h-300">
@@ -486,8 +486,8 @@ export default function Dashboard() {
                       } `}
                     />
                     <label htmlFor="" className="text-neutral-700">
-                      I agree to have fully participated in the matriculation
-                      ceremony
+                      I hereby confirm that I have fully participated in the
+                      matriculation ceremony.
                     </label>
                   </div>
                 </div>

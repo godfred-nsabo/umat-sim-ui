@@ -176,15 +176,14 @@ export default function Dashboard() {
     }
   };
 
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
+  // const delay = (ms: number) =>
+  //   new Promise((resolve) => setTimeout(resolve, ms));
 
   const Register = async () => {
     try {
       setsubmitLoading(true);
       const data = await EventService.Register();
 
-      await delay(2000);
       if (data?.isSuccessful) {
         toast.success(
           "Congrats on matriculating! 🎉 Big things ahead—this is just the beginning! Keep crushing it! 👏🔥",

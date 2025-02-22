@@ -91,7 +91,12 @@ const DefaultView: React.FC = () => {
         <main className="relative container mx-auto px-4 py-12">
           <div className="text-center text-white mb-8">
             <center>
-              <Image src="/logo-light.png" alt="Logo" width={200} height={300} />
+              <Image
+                src="/logo-light.png"
+                alt="Logo"
+                width={200}
+                height={300}
+              />
             </center>
           </div>
 
@@ -107,10 +112,10 @@ const DefaultView: React.FC = () => {
 
                 <div className="space-y-4">
                   <div>
-                    <Label htmlFor="name">Student Id </Label>
+                    <Label htmlFor="name">Reference Number </Label>
                     <Input
                       id="username"
-                      placeholder="Enter Student Id"
+                      placeholder="Enter Reference Number"
                       className="text-gray-500"
                       value={username}
                       onChange={handleUsernameChange}
